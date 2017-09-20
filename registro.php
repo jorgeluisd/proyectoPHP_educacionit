@@ -1,6 +1,10 @@
 <?php
 	$errores='';
 
+	$nombre = "";
+	$apellido = "";
+	$email = "";
+
 	if (isset($_POST["nombre"])) {
 		//Procesando el envio de datos del form
 
@@ -18,8 +22,8 @@
 		if (\validaciones\validarNombre($apellido)) {
 			$errores .= "<li class='list-group-item list-group-item-info'>El apellido no puede estar vacio y debe tener mas de 3 caracteres</li>";
 		}
-		if ($email=="") {
-			//$errores .= "<li class='list-group-item list-group-item-warning'>El email no puede estar vacio</li>";
+		if (!(\validaciones\validarEmail($email))) {
+			$errores .= "<li class='list-group-item list-group-item-warning'>El email no puede estar vacio</li>";
 		}
 		if ($clave=="") {
 			//$errores .= "<li class='list-group-item list-group-item-danger'>El clave no puede estar vacio</li>";
@@ -96,11 +100,11 @@
 			<form action="#" method="post">
 				<div class="mation">
 					<span>Nombre: <label>*</label></span>
-					<input type="text" name="nombre"> 
+					<input type="text" name="nombre" value="<?=$nombre;?>"> 
 					<span>Apellido: <label>*</label></span>
-					<input type="text" name="apellido"> 
+					<input type="text" name="apellido" value="<?=$apellido;?>"> 
 					<span>E-Mail: <label>*</label></span>
-					<input type="text" name="email">
+					<input type="text" name="email" value="<?=$email;?>">
 					<span>Contraseña: <label>*</label></span>
 					<input type="password" name="pass">
 					<span>Repetir Contraseña: <label>*</label></span>
